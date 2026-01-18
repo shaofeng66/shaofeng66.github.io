@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>根据连接的 wifi 自动切换 /etc/hosts | shaofeng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="#!/bin/bash
+#
+# this is a NetworkManager dispatcher script, use this to switch IPs of hosts in /etc/hosts
+# usage:
+# chmod 700 /home/shaofeng/bin/switch_hosts.dispatcher
+# chown root:root /home/shaofeng/bin/switch_hosts.dispatcher
+# sudo ln -s /home/shaofeng/bin/switch_hosts.dispatcher /etc/NetworkManager/dispatcher.d/switch_hosts.dispatcher
+# sudo systemctl restart NetworkManager
+
+SSID_LIST=(&#34;71-502-5G&#34; &#34;71-502&#34; &#34;66&#34;)
+
+if [[ &#34;$2&#34; == &#34;up&#34; ]]; then
+    # 获取当前连接的 SSID
+    CURRENT_SSID=$(iwgetid -r)
+
+    for SSID in &#34;${SSID_LIST[@]}&#34;; do
+	if [[ &#34;$CURRENT_SSID&#34; == &#34;$SSID&#34; ]]; then
+		sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts
+		exit 0
+	fi
+    done
+
+    # not in list, use remote
+    sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts
+elif [[ &#34;$2&#34; == &#34;vpn-up&#34; ]]; then
+    if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then
+	sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts
+	exit 0
+    fi
+elif [[ &#34;$2&#34; == &#34;vpn-down&#34; ]]; then
+    if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then
+	sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts
+	exit 0
+    fi
+fi
+/etc/hosts:">
+    <meta name="generator" content="Hugo 0.154.5">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/articles/%E6%A0%B9%E6%8D%AE%E8%BF%9E%E6%8E%A5%E7%9A%84-wifi-%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2-etc-hosts/">
+    
+
+    
+    
+    <meta property="og:url" content="http://localhost:1313/articles/%E6%A0%B9%E6%8D%AE%E8%BF%9E%E6%8E%A5%E7%9A%84-wifi-%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2-etc-hosts/">
+  <meta property="og:site_name" content="shaofeng&#39;s pages">
+  <meta property="og:title" content="根据连接的 wifi 自动切换 /etc/hosts">
+  <meta property="og:description" content="#!/bin/bash # # this is a NetworkManager dispatcher script, use this to switch IPs of hosts in /etc/hosts # usage: # chmod 700 /home/shaofeng/bin/switch_hosts.dispatcher # chown root:root /home/shaofeng/bin/switch_hosts.dispatcher # sudo ln -s /home/shaofeng/bin/switch_hosts.dispatcher /etc/NetworkManager/dispatcher.d/switch_hosts.dispatcher # sudo systemctl restart NetworkManager SSID_LIST=(&#34;71-502-5G&#34; &#34;71-502&#34; &#34;66&#34;) if [[ &#34;$2&#34; == &#34;up&#34; ]]; then # 获取当前连接的 SSID CURRENT_SSID=$(iwgetid -r) for SSID in &#34;${SSID_LIST[@]}&#34;; do if [[ &#34;$CURRENT_SSID&#34; == &#34;$SSID&#34; ]]; then sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts exit 0 fi done # not in list, use remote sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts elif [[ &#34;$2&#34; == &#34;vpn-up&#34; ]]; then if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts exit 0 fi elif [[ &#34;$2&#34; == &#34;vpn-down&#34; ]]; then if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts exit 0 fi fi /etc/hosts:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2025-12-30T10:20:16+08:00">
+    <meta property="article:modified_time" content="2025-12-30T10:20:16+08:00">
+    <meta property="article:tag" content="Ubuntu">
+    <meta property="article:tag" content="Wifi">
+
+  <meta itemprop="name" content="根据连接的 wifi 自动切换 /etc/hosts">
+  <meta itemprop="description" content="#!/bin/bash # # this is a NetworkManager dispatcher script, use this to switch IPs of hosts in /etc/hosts # usage: # chmod 700 /home/shaofeng/bin/switch_hosts.dispatcher # chown root:root /home/shaofeng/bin/switch_hosts.dispatcher # sudo ln -s /home/shaofeng/bin/switch_hosts.dispatcher /etc/NetworkManager/dispatcher.d/switch_hosts.dispatcher # sudo systemctl restart NetworkManager SSID_LIST=(&#34;71-502-5G&#34; &#34;71-502&#34; &#34;66&#34;) if [[ &#34;$2&#34; == &#34;up&#34; ]]; then # 获取当前连接的 SSID CURRENT_SSID=$(iwgetid -r) for SSID in &#34;${SSID_LIST[@]}&#34;; do if [[ &#34;$CURRENT_SSID&#34; == &#34;$SSID&#34; ]]; then sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts exit 0 fi done # not in list, use remote sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts elif [[ &#34;$2&#34; == &#34;vpn-up&#34; ]]; then if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts exit 0 fi elif [[ &#34;$2&#34; == &#34;vpn-down&#34; ]]; then if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts exit 0 fi fi /etc/hosts:">
+  <meta itemprop="datePublished" content="2025-12-30T10:20:16+08:00">
+  <meta itemprop="dateModified" content="2025-12-30T10:20:16+08:00">
+  <meta itemprop="wordCount" content="176">
+  <meta itemprop="keywords" content="Ubuntu,Wifi">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="根据连接的 wifi 自动切换 /etc/hosts">
+  <meta name="twitter:description" content="#!/bin/bash # # this is a NetworkManager dispatcher script, use this to switch IPs of hosts in /etc/hosts # usage: # chmod 700 /home/shaofeng/bin/switch_hosts.dispatcher # chown root:root /home/shaofeng/bin/switch_hosts.dispatcher # sudo ln -s /home/shaofeng/bin/switch_hosts.dispatcher /etc/NetworkManager/dispatcher.d/switch_hosts.dispatcher # sudo systemctl restart NetworkManager SSID_LIST=(&#34;71-502-5G&#34; &#34;71-502&#34; &#34;66&#34;) if [[ &#34;$2&#34; == &#34;up&#34; ]]; then # 获取当前连接的 SSID CURRENT_SSID=$(iwgetid -r) for SSID in &#34;${SSID_LIST[@]}&#34;; do if [[ &#34;$CURRENT_SSID&#34; == &#34;$SSID&#34; ]]; then sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts exit 0 fi done # not in list, use remote sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts elif [[ &#34;$2&#34; == &#34;vpn-up&#34; ]]; then if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts exit 0 fi elif [[ &#34;$2&#34; == &#34;vpn-down&#34; ]]; then if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts exit 0 fi fi /etc/hosts:">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        shaofeng&#39;s pages
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/articles/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l mw7 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">根据连接的 wifi 自动切换 /etc/hosts</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-12-30T10:20:16+08:00">December 30, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># this is a NetworkManager dispatcher script, use this to switch IPs of hosts in /etc/hosts</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># usage:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># chmod 700 /home/shaofeng/bin/switch_hosts.dispatcher</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># chown root:root /home/shaofeng/bin/switch_hosts.dispatcher</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sudo ln -s /home/shaofeng/bin/switch_hosts.dispatcher /etc/NetworkManager/dispatcher.d/switch_hosts.dispatcher</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sudo systemctl restart NetworkManager</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SSID_LIST<span style="color:#f92672">=(</span><span style="color:#e6db74">&#34;71-502-5G&#34;</span> <span style="color:#e6db74">&#34;71-502&#34;</span> <span style="color:#e6db74">&#34;66&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;up&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 获取当前连接的 SSID</span>
+</span></span><span style="display:flex;"><span>    CURRENT_SSID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>iwgetid -r<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> SSID in <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SSID_LIST[@]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$CURRENT_SSID<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span>$SSID<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>		sed -i -e <span style="color:#e6db74">&#39;/dynremote/ s/^[^#]/#&amp;/&#39;</span> -e <span style="color:#e6db74">&#39;/dynlocal/ s/^#//&#39;</span> /etc/hosts
+</span></span><span style="display:flex;"><span>		exit <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># not in list, use remote</span>
+</span></span><span style="display:flex;"><span>    sed -i -e <span style="color:#e6db74">&#39;/dynlocal/ s/^[^#]/#&amp;/&#39;</span> -e <span style="color:#e6db74">&#39;/dynremote/ s/^#//&#39;</span> /etc/hosts
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;vpn-up&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CONNECTION_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;home&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>	sed -i -e <span style="color:#e6db74">&#39;/dynremote/ s/^[^#]/#&amp;/&#39;</span> -e <span style="color:#e6db74">&#39;/dynlocal/ s/^#//&#39;</span> /etc/hosts
+</span></span><span style="display:flex;"><span>	exit <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;vpn-down&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CONNECTION_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;home&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>	sed -i -e <span style="color:#e6db74">&#39;/dynlocal/ s/^[^#]/#&amp;/&#39;</span> -e <span style="color:#e6db74">&#39;/dynremote/ s/^#//&#39;</span> /etc/hosts
+</span></span><span style="display:flex;"><span>	exit <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><p>/etc/hosts:</p>
+<pre tabindex="0"><code># machines in kaiyun
+192.168.4.249 tapedev.yinhe # dynremote
+192.168.4.240 sunflower.yinhe # dynremote
+192.168.4.241 daisy.yinhe # dynremote
+
+#127.0.4.249 tapedev.yinhe # dynlocal
+#127.0.4.240 sunflower.yinhe # dynlocal
+#127.0.4.241 daisy.yinhe # dynlocal
+</code></pre><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/ubuntu/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Ubuntu</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/wifi/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Wifi</a>
+   </li>
+  
+</ul>
+
+      
+    </div></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  shaofeng's pages 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

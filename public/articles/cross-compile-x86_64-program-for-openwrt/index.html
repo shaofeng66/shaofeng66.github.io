@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Cross Compile X86_64 Program for Openwrt | shaofeng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="export STAGING_DIR=/home/openwrt/staging_dir/toolchain-x86_64_gcc-7.5.0_musl   
+export PATH=${PATH}:${STAGING_DIR}/bin
+
+./configure --build=x86_64-unknown-linux-gnu --host=x86_64-openwrt-linux-musl
+
+make -j8
+">
+    <meta name="generator" content="Hugo 0.154.5">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/articles/cross-compile-x86_64-program-for-openwrt/">
+    
+
+    
+    
+    <meta property="og:url" content="http://localhost:1313/articles/cross-compile-x86_64-program-for-openwrt/">
+  <meta property="og:site_name" content="shaofeng&#39;s pages">
+  <meta property="og:title" content="Cross Compile X86_64 Program for Openwrt">
+  <meta property="og:description" content="export STAGING_DIR=/home/openwrt/staging_dir/toolchain-x86_64_gcc-7.5.0_musl export PATH=${PATH}:${STAGING_DIR}/bin ./configure --build=x86_64-unknown-linux-gnu --host=x86_64-openwrt-linux-musl make -j8">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2021-04-03T22:06:35+08:00">
+    <meta property="article:modified_time" content="2021-04-03T22:06:35+08:00">
+    <meta property="article:tag" content="Openwrt">
+
+  <meta itemprop="name" content="Cross Compile X86_64 Program for Openwrt">
+  <meta itemprop="description" content="export STAGING_DIR=/home/openwrt/staging_dir/toolchain-x86_64_gcc-7.5.0_musl export PATH=${PATH}:${STAGING_DIR}/bin ./configure --build=x86_64-unknown-linux-gnu --host=x86_64-openwrt-linux-musl make -j8">
+  <meta itemprop="datePublished" content="2021-04-03T22:06:35+08:00">
+  <meta itemprop="dateModified" content="2021-04-03T22:06:35+08:00">
+  <meta itemprop="wordCount" content="9">
+  <meta itemprop="keywords" content="Openwrt">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Cross Compile X86_64 Program for Openwrt">
+  <meta name="twitter:description" content="export STAGING_DIR=/home/openwrt/staging_dir/toolchain-x86_64_gcc-7.5.0_musl export PATH=${PATH}:${STAGING_DIR}/bin ./configure --build=x86_64-unknown-linux-gnu --host=x86_64-openwrt-linux-musl make -j8">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        shaofeng&#39;s pages
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/articles/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l mw7 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Cross Compile X86_64 Program for Openwrt</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-04-03T22:06:35+08:00">April 3, 2021</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><pre tabindex="0"><code>export STAGING_DIR=/home/openwrt/staging_dir/toolchain-x86_64_gcc-7.5.0_musl   
+export PATH=${PATH}:${STAGING_DIR}/bin
+
+./configure --build=x86_64-unknown-linux-gnu --host=x86_64-openwrt-linux-musl
+
+make -j8
+</code></pre><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/openwrt/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Openwrt</a>
+   </li>
+  
+</ul>
+
+      
+    </div></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  shaofeng's pages 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

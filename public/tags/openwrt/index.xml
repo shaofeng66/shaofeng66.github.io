@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Openwrt on shaofeng&#39;s pages</title>
+    <link>http://localhost:1313/tags/openwrt/</link>
+    <description>Recent content in Openwrt on shaofeng&#39;s pages</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Apr 2021 22:06:35 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/openwrt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cross Compile X86_64 Program for Openwrt</title>
+      <link>http://localhost:1313/articles/cross-compile-x86_64-program-for-openwrt/</link>
+      <pubDate>Sat, 03 Apr 2021 22:06:35 +0800</pubDate>
+      <guid>http://localhost:1313/articles/cross-compile-x86_64-program-for-openwrt/</guid>
+      <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export STAGING_DIR=/home/openwrt/staging_dir/toolchain-x86_64_gcc-7.5.0_musl   &#xA;export PATH=${PATH}:${STAGING_DIR}/bin&#xA;&#xA;./configure --build=x86_64-unknown-linux-gnu --host=x86_64-openwrt-linux-musl&#xA;&#xA;make -j8&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+  </channel>
+</rss>

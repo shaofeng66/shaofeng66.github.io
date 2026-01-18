@@ -1,0 +1,12 @@
+baseURL = 'https://shaofeng66.github.io/'
+languageCode = 'en-us'
+title = "shaofeng's pages"
+theme = "ananke"
+
+[params]
+recent_posts_number = 10
+
+[[menu.main]]
+name = "Articles"
+url = "/articles/"
+weight = 1

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>shaofeng&#39;s pages</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.154.5">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+    
+      <link href="/articles/index.xml" rel="alternate" type="application/rss+xml" title="shaofeng&#39;s pages" />
+      <link href="/articles/index.xml" rel="feed" type="application/rss+xml" title="shaofeng&#39;s pages" />
+      
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/articles/">
+    
+
+    
+    
+    <meta property="og:url" content="http://localhost:1313/articles/">
+  <meta property="og:site_name" content="shaofeng&#39;s pages">
+  <meta property="og:title" content="shaofeng&#39;s pages">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="shaofeng&#39;s pages">
+  <meta itemprop="datePublished" content="2026-01-06T14:59:06+08:00">
+  <meta itemprop="dateModified" content="2026-01-06T14:59:06+08:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="shaofeng&#39;s pages">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        shaofeng&#39;s pages
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white white-90 no-underline" href="/articles/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+        </ul>
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          shaofeng&#39;s pages
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links mid-gray"></section>
+    <section class="flex-ns mt5 flex-wrap justify-around">
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    
+    <h1 class="f3 near-black">
+      <a href="/articles/this-service-run-ssh-remote-port-forwarding/" class="link black dim">
+        This Service Run Ssh Remote Port Forwarding
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># This service run ssh remote port forwarding(https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding#Remote_Port_Forwarding)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># it open a tcp port on remote host which usually on cloud, forwarding the tcp connection to port 22 on host in private network.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># usage:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># first ssh-copy-id -l &lt;username of remote host&gt; &lt;remote host&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then on remote host, add a line ```GatewayPorts clientspecified``` to /etc/ssh/sshd_config, and ```systemctl restart sshd```</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># copy this file to /etc/systemd/system/ssh-tunnel@.service</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then: systemctl daemon-reload ; systemctl start ssh-tunnel@&lt;remote host&gt;:&lt;port to listen on remote host&gt;:&lt;username of remote host&gt;:&lt;path to id file&gt;:&lt;host in private network&gt;; systemctl enable ssh-tunnel@&lt;remote host&gt;:&lt;port to listen on remote host&gt;:&lt;username of remote host&gt;:&lt;path to id file&gt;:&lt;host in private network&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># e.g.: systemctl daemon-reload ; systemctl start ssh-tunnel@61.171.66.209:32249:root:/root/.ssh/id_rsa:127.0.0.1; systemctl enable ssh-tunnel@61.171.66.209:32249:root:/root/.ssh/id_rsa:127.0.0.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># multipe systemd service with different remote hosts or different remote port could be setup.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Unit<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Description<span style="color:#f92672">=</span>SSH Tunnel with Dynamic Port Forwarding
+</span></span><span style="display:flex;"><span>After<span style="color:#f92672">=</span>network.target
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Service<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Type<span style="color:#f92672">=</span>simple
+</span></span><span style="display:flex;"><span>Environment<span style="color:#f92672">=</span>REMOTE<span style="color:#f92672">=</span>%I
+</span></span><span style="display:flex;"><span>ExecStart<span style="color:#f92672">=</span>/bin/bash -c <span style="color:#e6db74">&#39;IFS=&#34;:&#34; read -r REMOTE_HOST PORT USER KEY_FILE LOCAL_HOST &lt;&lt;&lt; &#34;$REMOTE&#34;; (while true;do echo &#39;</span>date<span style="color:#e6db74">&#39;;sleep 60;done) | ssh -l $${USER} -i $${KEY_FILE} -R 0.0.0.0:$${PORT}:$${LOCAL_HOST}:22 -o PreferredAuthentications=publickey -o IdentitiesOnly=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $${REMOTE_HOST}&#39;</span>
+</span></span><span style="display:flex;"><span>Restart<span style="color:#f92672">=</span>always
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Install<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>WantedBy<span style="color:#f92672">=</span>multi-user.target
+</span></span></code></pre></div>
+    </div>
+    <a href="/articles/this-service-run-ssh-remote-port-forwarding/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    
+    <h1 class="f3 near-black">
+      <a href="/articles/%E6%A0%B9%E6%8D%AE%E8%BF%9E%E6%8E%A5%E7%9A%84-wifi-%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2-etc-hosts/" class="link black dim">
+        根据连接的 wifi 自动切换 /etc/hosts
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># this is a NetworkManager dispatcher script, use this to switch IPs of hosts in /etc/hosts</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># usage:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># chmod 700 /home/shaofeng/bin/switch_hosts.dispatcher</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># chown root:root /home/shaofeng/bin/switch_hosts.dispatcher</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sudo ln -s /home/shaofeng/bin/switch_hosts.dispatcher /etc/NetworkManager/dispatcher.d/switch_hosts.dispatcher</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sudo systemctl restart NetworkManager</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SSID_LIST<span style="color:#f92672">=(</span><span style="color:#e6db74">&#34;71-502-5G&#34;</span> <span style="color:#e6db74">&#34;71-502&#34;</span> <span style="color:#e6db74">&#34;66&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;up&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 获取当前连接的 SSID</span>
+</span></span><span style="display:flex;"><span>    CURRENT_SSID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>iwgetid -r<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> SSID in <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SSID_LIST[@]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$CURRENT_SSID<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;</span>$SSID<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>		sed -i -e <span style="color:#e6db74">&#39;/dynremote/ s/^[^#]/#&amp;/&#39;</span> -e <span style="color:#e6db74">&#39;/dynlocal/ s/^#//&#39;</span> /etc/hosts
+</span></span><span style="display:flex;"><span>		exit <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># not in list, use remote</span>
+</span></span><span style="display:flex;"><span>    sed -i -e <span style="color:#e6db74">&#39;/dynlocal/ s/^[^#]/#&amp;/&#39;</span> -e <span style="color:#e6db74">&#39;/dynremote/ s/^#//&#39;</span> /etc/hosts
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;vpn-up&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CONNECTION_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;home&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>	sed -i -e <span style="color:#e6db74">&#39;/dynremote/ s/^[^#]/#&amp;/&#39;</span> -e <span style="color:#e6db74">&#39;/dynlocal/ s/^#//&#39;</span> /etc/hosts
+</span></span><span style="display:flex;"><span>	exit <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;vpn-down&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CONNECTION_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;home&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>	sed -i -e <span style="color:#e6db74">&#39;/dynlocal/ s/^[^#]/#&amp;/&#39;</span> -e <span style="color:#e6db74">&#39;/dynremote/ s/^#//&#39;</span> /etc/hosts
+</span></span><span style="display:flex;"><span>	exit <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><p>/etc/hosts:</p>
+    </div>
+    <a href="/articles/%E6%A0%B9%E6%8D%AE%E8%BF%9E%E6%8E%A5%E7%9A%84-wifi-%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2-etc-hosts/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    
+    <h1 class="f3 near-black">
+      <a href="/articles/wayland-%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8-gnome-monitor-config-%E8%BF%9B%E5%85%A5%E5%BD%B1%E9%99%A2%E6%A8%A1%E5%BC%8F/" class="link black dim">
+        Wayland 桌面环境使用 Gnome Monitor Config 进入影院模式
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p><a href="https://github.com/jadahl/gnome-monitor-config">https://github.com/jadahl/gnome-monitor-config</a></p>
+<p>gnome-monitor-config set -LpM DP-2 -s 2</p>
+<p>gnome-monitor-config set -LpM DP-2 -s 2 -LM eDP-1 -s 2 -x 3840 -y 780 -LM HDMI-1 -s 2 -x 3840 -y 1860 -t flip</p>
+    </div>
+    <a href="/articles/wayland-%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8-gnome-monitor-config-%E8%BF%9B%E5%85%A5%E5%BD%B1%E9%99%A2%E6%A8%A1%E5%BC%8F/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    
+    <h1 class="f3 near-black">
+      <a href="/articles/simple-https-server/" class="link black dim">
+        Simple Https Server
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># taken from https://gist.github.com/DannyHinshaw/a3ac5991d66a2fe6d97a569c6cdac534</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># which taken from http://www.piware.de/2011/01/creating-an-https-server-in-python/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># generate server.pem with the following command:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    openssl req -new -x509 -keyout key.pem -out server.pem -days 365 -nodes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> http.server
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ssl
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;usage: &lt;simple-https-server&gt; &lt;port&gt; &lt;cert pem file&gt; &lt;key pem file&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>port, certfile, keyfile <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>:]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>server_address <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;0.0.0.0&#39;</span>, int(port))
+</span></span><span style="display:flex;"><span>httpd <span style="color:#f92672">=</span> http<span style="color:#f92672">.</span>server<span style="color:#f92672">.</span>HTTPServer(server_address, http<span style="color:#f92672">.</span>server<span style="color:#f92672">.</span>SimpleHTTPRequestHandler)
+</span></span><span style="display:flex;"><span>httpd<span style="color:#f92672">.</span>socket <span style="color:#f92672">=</span> ssl<span style="color:#f92672">.</span>wrap_socket(httpd<span style="color:#f92672">.</span>socket,
+</span></span><span style="display:flex;"><span>                               server_side<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>                               certfile<span style="color:#f92672">=</span>certfile,
+</span></span><span style="display:flex;"><span>                               keyfile<span style="color:#f92672">=</span>keyfile,
+</span></span><span style="display:flex;"><span>                               ssl_version<span style="color:#f92672">=</span>ssl<span style="color:#f92672">.</span>PROTOCOL_TLS)
+</span></span><span style="display:flex;"><span>httpd<span style="color:#f92672">.</span>serve_forever()
+</span></span></code></pre></div>
+    </div>
+    <a href="/articles/simple-https-server/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    
+    <h1 class="f3 near-black">
+      <a href="/articles/%E7%9B%91%E6%8E%A7%E7%BD%91%E7%AB%99-ssl-%E8%AF%81%E4%B9%A6%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%E5%B9%B6%E9%80%9A%E8%BF%87-webhook-%E5%91%8A%E8%AD%A6/" class="link black dim">
+        监控网站 SSL 证书过期时间并通过 Webhook 告警
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>cron 每天检查一次，提前30天告警：</p>
+<pre tabindex="0"><code>10 8 * * * /root/bin/ssl_cert_about_to_expire_in_days.py example.com 30 &#39;https://oapi.dingtalk.com/robot/send?access_token=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#39;
+</code></pre><p>/root/bin/ssl_cert_about_to_expire_in_days.py:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python3" data-lang="python3"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/python3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> OpenSSL
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ssl
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> socket
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">send_webhook</span>(url, msg):
+</span></span><span style="display:flex;"><span>    requests<span style="color:#f92672">.</span>post(url, headers<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>
+</span></span><span style="display:flex;"><span>    }, json<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;msgtype&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;text&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;content&#34;</span>: msg,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>    hostname <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>    port <span style="color:#f92672">=</span> <span style="color:#ae81ff">443</span>
+</span></span><span style="display:flex;"><span>    threshold <span style="color:#f92672">=</span> int(sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>    wh_url <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    context <span style="color:#f92672">=</span> ssl<span style="color:#f92672">.</span>create_default_context()
+</span></span><span style="display:flex;"><span>    context<span style="color:#f92672">.</span>check_hostname <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>    context<span style="color:#f92672">.</span>verify_mode <span style="color:#f92672">=</span> ssl<span style="color:#f92672">.</span>CERT_NONE
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> socket<span style="color:#f92672">.</span>create_connection((hostname, port)) <span style="color:#66d9ef">as</span> sock:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span> context<span style="color:#f92672">.</span>wrap_socket(sock, server_hostname<span style="color:#f92672">=</span>hostname) <span style="color:#66d9ef">as</span> sslsock:
+</span></span><span style="display:flex;"><span>            der_cert <span style="color:#f92672">=</span> sslsock<span style="color:#f92672">.</span>getpeercert(<span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>            x509 <span style="color:#f92672">=</span> OpenSSL<span style="color:#f92672">.</span>crypto<span style="color:#f92672">.</span>load_certificate(OpenSSL<span style="color:#f92672">.</span>crypto<span style="color:#f92672">.</span>FILETYPE_ASN1, der_cert)
+</span></span><span style="display:flex;"><span>            timestamp<span style="color:#f92672">=</span>x509<span style="color:#f92672">.</span>get_notAfter()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>)
+</span></span><span style="display:flex;"><span>            notAfter <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>strptime(timestamp, <span style="color:#e6db74">&#39;%Y%m</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">%H%M%SZ&#39;</span>)
+</span></span><span style="display:flex;"><span>            delta <span style="color:#f92672">=</span> notAfter <span style="color:#f92672">-</span> datetime<span style="color:#f92672">.</span>now()
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> delta<span style="color:#f92672">.</span>total_seconds() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>                msg <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>hostname<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;s certificate has expired. notAfter: </span><span style="color:#e6db74">{</span>timestamp<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                send_webhook(wh_url, msg)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                days <span style="color:#f92672">=</span> delta<span style="color:#f92672">.</span>days
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> days <span style="color:#f92672">&lt;</span> threshold:
+</span></span><span style="display:flex;"><span>                    msg <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>hostname<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;s certificate will expire in </span><span style="color:#e6db74">{</span>days<span style="color:#e6db74">}</span><span style="color:#e6db74"> days. notAfter: </span><span style="color:#e6db74">{</span>timestamp<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                    send_webhook(wh_url, msg)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    main()
+</span></span></code></pre></div>
+    </div>
+    <a href="/articles/%E7%9B%91%E6%8E%A7%E7%BD%91%E7%AB%99-ssl-%E8%AF%81%E4%B9%A6%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%E5%B9%B6%E9%80%9A%E8%BF%87-webhook-%E5%91%8A%E8%AD%A6/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    
+    <h1 class="f3 near-black">
+      <a href="/articles/cross-compile-x86_64-program-for-openwrt/" class="link black dim">
+        Cross Compile X86_64 Program for Openwrt
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <pre tabindex="0"><code>export STAGING_DIR=/home/openwrt/staging_dir/toolchain-x86_64_gcc-7.5.0_musl   
+export PATH=${PATH}:${STAGING_DIR}/bin
+
+./configure --build=x86_64-unknown-linux-gnu --host=x86_64-openwrt-linux-musl
+
+make -j8
+</code></pre>
+    </div>
+    <a href="/articles/cross-compile-x86_64-program-for-openwrt/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    
+    <h1 class="f3 near-black">
+      <a href="/articles/%E6%8A%98%E8%85%BE%E4%BA%86%E8%BF%99%E4%B9%88%E5%A4%9A%E5%B9%B4%E7%8E%B0%E5%9C%A8%E8%BF%94%E7%92%9E%E5%BD%92%E7%9C%9F%E5%8F%AA%E8%A6%814%E6%9D%A1%E5%91%BD%E4%BB%A4/" class="link black dim">
+        折腾了这么多年，现在返璞归真，只要4条命令
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>在某个遥远的地方：</p>
+<pre tabindex="0"><code>sudo iptables -t filter -A FORWARD -s 192.168.88.0/24 -j ACCEPT
+sudo iptables -t nat -A POSTROUTING -s 192.168.88.0/24 -o eth0 -j MASQUERADE
+sudo socat TUN:192.168.88.1/24,tun-name=ssl,up openssl-listen:443,reuseaddr,cert=server.pem,verify=0,fork
+</code></pre><p>在自己机器上：</p>
+<pre tabindex="0"><code>sudo socat TUN:192.168.88.2/24,tun-name=ssl,up openssl-connect:somewhere.doesnot.exist:443,cafile=server.crt,verify=0
+</code></pre><p>应该也可以级联socat遇到不友好人士扔个gzip炸弹啥的，需要研究一下ip-pktinfo。</p>
+    </div>
+    <a href="/articles/%E6%8A%98%E8%85%BE%E4%BA%86%E8%BF%99%E4%B9%88%E5%A4%9A%E5%B9%B4%E7%8E%B0%E5%9C%A8%E8%BF%94%E7%92%9E%E5%BD%92%E7%9C%9F%E5%8F%AA%E8%A6%814%E6%9D%A1%E5%91%BD%E4%BB%A4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="w-100 w-30-l mb4 relative bg-white">
+          <div class="w-100 mb4 nested-copy-line-height relative bg-white">
+  <div class="mb3 pa4 gray overflow-hidden bg-white">
+    
+    <h1 class="f3 near-black">
+      <a href="/articles/lsyncd-accelarate-vim-lsp-server/" class="link black dim">
+        用lsyncd加速vim language server
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>远程编辑在VSCode里面的解决方案是 <a href="https://code.visualstudio.com/docs/remote/ssh">remote ssh</a>, VSCode会在远端运行一个agent以加速language server对代码文件的访问和解析。然而对vimer，我们可能的解决方案是sshfs，这个的问题在于通过sshfs对文件的访问很慢，导致coc-vim这种ls client慢到基本不能用的地步。</p>
+<p>那么我们可以用<a href="https://github.com/axkibe/lsyncd">lsyncd</a>来帮忙，这东西结合了inotify和rsync来实现近实时的目录同步。我们可以在本地clone一份代码，然后建立一个lsyncd的配置文件lsyncd.conf：</p>
+<pre tabindex="0"><code>sync {
+    default.rsync,
+    source    = &#34;/home/user/intel/machine/proj&#34;,
+    target    = &#34;machine:/root/src/proj&#34;,
+    delay     = 5,
+    delete    = false,
+    excludeFrom = &#34;/home/user/intel/machine/proj/lsyncd.exclude&#34;,
+    rsync     = {
+        binary   = &#34;/usr/bin/rsync&#34;,
+        archive  = true,
+        compress = true,
+        chown = &#34;root:root&#34;
+    }
+}
+</code></pre><p>其中的lsyncd.exclude是需要exclude的一些文件，比如.git等:</p>
+<pre tabindex="0"><code>node_modules
+.git
+dist
+lib
+lsyncd.conf
+lsyncd.exclude
+lsyncd.pid
+</code></pre><p>然后，我们只需要启动lsyncd的daemon就可以直接在本地用vim编辑，实时同步到远端了。因为language server访问的是本地文件，速度杠杠的。</p>
+<pre tabindex="0"><code>lsyncd -pidfile lsyncd.pid lsyncd.conf 
+</code></pre>
+    </div>
+    <a href="/articles/lsyncd-accelarate-vim-lsp-server/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+    </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+    &copy;  shaofeng's pages 2026 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
