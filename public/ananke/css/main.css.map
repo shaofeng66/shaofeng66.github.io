@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/home/seven/github/shaofeng66/shaofeng66.github.io",
+	"sourceRoot": "/home/shaofeng/github/shaofeng66/shaofeng66.github.io",
 	"sources": [
 		"ananke/css/main.css"
 	],

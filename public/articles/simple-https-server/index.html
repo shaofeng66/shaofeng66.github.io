@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
@@ -29,16 +29,16 @@ httpd.socket = ssl.wrap_socket(httpd.socket,
                                ssl_version=ssl.PROTOCOL_TLS)
 httpd.serve_forever()
 ">
-    <meta name="generator" content="Hugo 0.154.5">
+    <meta name="generator" content="Hugo 0.159.1">
     
     
     
-      <meta name="robots" content="noindex, nofollow">
+      <meta name="robots" content="index, follow">
     
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
 
 
 
@@ -54,12 +54,12 @@ httpd.serve_forever()
     
 
     
-      <link rel="canonical" href="http://localhost:1313/articles/simple-https-server/">
+      <link rel="canonical" href="https://shaofeng66.github.io/articles/simple-https-server/">
     
 
     
     
-    <meta property="og:url" content="http://localhost:1313/articles/simple-https-server/">
+    <meta property="og:url" content="https://shaofeng66.github.io/articles/simple-https-server/">
   <meta property="og:site_name" content="shaofeng&#39;s pages">
   <meta property="og:title" content="Simple Https Server">
   <meta property="og:description" content="# taken from https://gist.github.com/DannyHinshaw/a3ac5991d66a2fe6d97a569c6cdac534 # which taken from http://www.piware.de/2011/01/creating-an-https-server-in-python/ # generate server.pem with the following command: # openssl req -new -x509 -keyout key.pem -out server.pem -days 365 -nodes import http.server import ssl import sys print(&#34;usage: &lt;simple-https-server&gt; &lt;port&gt; &lt;cert pem file&gt; &lt;key pem file&gt;&#34;) port, certfile, keyfile = sys.argv[1:] server_address = (&#39;0.0.0.0&#39;, int(port)) httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler) httpd.socket = ssl.wrap_socket(httpd.socket, server_side=True, certfile=certfile, keyfile=keyfile, ssl_version=ssl.PROTOCOL_TLS) httpd.serve_forever()">
@@ -80,8 +80,11 @@ httpd.serve_forever()
   <meta name="twitter:title" content="Simple Https Server">
   <meta name="twitter:description" content="# taken from https://gist.github.com/DannyHinshaw/a3ac5991d66a2fe6d97a569c6cdac534 # which taken from http://www.piware.de/2011/01/creating-an-https-server-in-python/ # generate server.pem with the following command: # openssl req -new -x509 -keyout key.pem -out server.pem -days 365 -nodes import http.server import ssl import sys print(&#34;usage: &lt;simple-https-server&gt; &lt;port&gt; &lt;cert pem file&gt; &lt;key pem file&gt;&#34;) port, certfile, keyfile = sys.argv[1:] server_address = (&#39;0.0.0.0&#39;, int(port)) httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler) httpd.socket = ssl.wrap_socket(httpd.socket, server_side=True, certfile=certfile, keyfile=keyfile, ssl_version=ssl.PROTOCOL_TLS) httpd.serve_forever()">
 
+      
+      
+    
 	
-  </head><body class="ma0 avenir bg-near-white development">
+  </head><body class="ma0 avenir bg-near-white production">
 
     
    
@@ -140,7 +143,7 @@ httpd.serve_forever()
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># taken from https://gist.github.com/DannyHinshaw/a3ac5991d66a2fe6d97a569c6cdac534</span>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># taken from https://gist.github.com/DannyHinshaw/a3ac5991d66a2fe6d97a569c6cdac534</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># which taken from http://www.piware.de/2011/01/creating-an-https-server-in-python/</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># generate server.pem with the following command:</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#    openssl req -new -x509 -keyout key.pem -out server.pem -days 365 -nodes</span>
@@ -176,7 +179,7 @@ httpd.serve_forever()
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://shaofeng66.github.io/" >
     &copy;  shaofeng's pages 2026 
   </a>
     <div><div class="ananke-socials"></div>

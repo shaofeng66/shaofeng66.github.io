@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
@@ -33,16 +33,16 @@ lsyncd.pid
 然后，我们只需要启动lsyncd的daemon就可以直接在本地用vim编辑，实时同步到远端了。因为language server访问的是本地文件，速度杠杠的。
 lsyncd -pidfile lsyncd.pid lsyncd.conf 
 ">
-    <meta name="generator" content="Hugo 0.154.5">
+    <meta name="generator" content="Hugo 0.159.1">
     
     
     
-      <meta name="robots" content="noindex, nofollow">
+      <meta name="robots" content="index, follow">
     
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
 
 
 
@@ -58,12 +58,12 @@ lsyncd -pidfile lsyncd.pid lsyncd.conf
     
 
     
-      <link rel="canonical" href="http://localhost:1313/articles/lsyncd-accelarate-vim-lsp-server/">
+      <link rel="canonical" href="https://shaofeng66.github.io/articles/lsyncd-accelarate-vim-lsp-server/">
     
 
     
     
-    <meta property="og:url" content="http://localhost:1313/articles/lsyncd-accelarate-vim-lsp-server/">
+    <meta property="og:url" content="https://shaofeng66.github.io/articles/lsyncd-accelarate-vim-lsp-server/">
   <meta property="og:site_name" content="shaofeng&#39;s pages">
   <meta property="og:title" content="用lsyncd加速vim language server">
   <meta property="og:description" content="远程编辑在VSCode里面的解决方案是 remote ssh, VSCode会在远端运行一个agent以加速language server对代码文件的访问和解析。然而对vimer，我们可能的解决方案是sshfs，这个的问题在于通过sshfs对文件的访问很慢，导致coc-vim这种ls client慢到基本不能用的地步。
@@ -97,8 +97,11 @@ sync { default.rsync, source = &#34;/home/user/intel/machine/proj&#34;, target =
 node_modules .git dist lib lsyncd.conf lsyncd.exclude lsyncd.pid 然后，我们只需要启动lsyncd的daemon就可以直接在本地用vim编辑，实时同步到远端了。因为language server访问的是本地文件，速度杠杠的。
 lsyncd -pidfile lsyncd.pid lsyncd.conf">
 
+      
+      
+    
 	
-  </head><body class="ma0 avenir bg-near-white development">
+  </head><body class="ma0 avenir bg-near-white production">
 
     
    
@@ -201,7 +204,7 @@ lsyncd.pid
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://shaofeng66.github.io/" >
     &copy;  shaofeng's pages 2026 
   </a>
     <div><div class="ananke-socials"></div>

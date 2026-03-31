@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
@@ -42,16 +42,16 @@ elif [[ &#34;$2&#34; == &#34;vpn-down&#34; ]]; then
     fi
 fi
 /etc/hosts:">
-    <meta name="generator" content="Hugo 0.154.5">
+    <meta name="generator" content="Hugo 0.159.1">
     
     
     
-      <meta name="robots" content="noindex, nofollow">
+      <meta name="robots" content="index, follow">
     
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
 
 
 
@@ -67,12 +67,12 @@ fi
     
 
     
-      <link rel="canonical" href="http://localhost:1313/articles/%E6%A0%B9%E6%8D%AE%E8%BF%9E%E6%8E%A5%E7%9A%84-wifi-%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2-etc-hosts/">
+      <link rel="canonical" href="https://shaofeng66.github.io/articles/%E6%A0%B9%E6%8D%AE%E8%BF%9E%E6%8E%A5%E7%9A%84-wifi-%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2-etc-hosts/">
     
 
     
     
-    <meta property="og:url" content="http://localhost:1313/articles/%E6%A0%B9%E6%8D%AE%E8%BF%9E%E6%8E%A5%E7%9A%84-wifi-%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2-etc-hosts/">
+    <meta property="og:url" content="https://shaofeng66.github.io/articles/%E6%A0%B9%E6%8D%AE%E8%BF%9E%E6%8E%A5%E7%9A%84-wifi-%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2-etc-hosts/">
   <meta property="og:site_name" content="shaofeng&#39;s pages">
   <meta property="og:title" content="根据连接的 wifi 自动切换 /etc/hosts">
   <meta property="og:description" content="#!/bin/bash # # this is a NetworkManager dispatcher script, use this to switch IPs of hosts in /etc/hosts # usage: # chmod 700 /home/shaofeng/bin/switch_hosts.dispatcher # chown root:root /home/shaofeng/bin/switch_hosts.dispatcher # sudo ln -s /home/shaofeng/bin/switch_hosts.dispatcher /etc/NetworkManager/dispatcher.d/switch_hosts.dispatcher # sudo systemctl restart NetworkManager SSID_LIST=(&#34;71-502-5G&#34; &#34;71-502&#34; &#34;66&#34;) if [[ &#34;$2&#34; == &#34;up&#34; ]]; then # 获取当前连接的 SSID CURRENT_SSID=$(iwgetid -r) for SSID in &#34;${SSID_LIST[@]}&#34;; do if [[ &#34;$CURRENT_SSID&#34; == &#34;$SSID&#34; ]]; then sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts exit 0 fi done # not in list, use remote sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts elif [[ &#34;$2&#34; == &#34;vpn-up&#34; ]]; then if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts exit 0 fi elif [[ &#34;$2&#34; == &#34;vpn-down&#34; ]]; then if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts exit 0 fi fi /etc/hosts:">
@@ -94,8 +94,11 @@ fi
   <meta name="twitter:title" content="根据连接的 wifi 自动切换 /etc/hosts">
   <meta name="twitter:description" content="#!/bin/bash # # this is a NetworkManager dispatcher script, use this to switch IPs of hosts in /etc/hosts # usage: # chmod 700 /home/shaofeng/bin/switch_hosts.dispatcher # chown root:root /home/shaofeng/bin/switch_hosts.dispatcher # sudo ln -s /home/shaofeng/bin/switch_hosts.dispatcher /etc/NetworkManager/dispatcher.d/switch_hosts.dispatcher # sudo systemctl restart NetworkManager SSID_LIST=(&#34;71-502-5G&#34; &#34;71-502&#34; &#34;66&#34;) if [[ &#34;$2&#34; == &#34;up&#34; ]]; then # 获取当前连接的 SSID CURRENT_SSID=$(iwgetid -r) for SSID in &#34;${SSID_LIST[@]}&#34;; do if [[ &#34;$CURRENT_SSID&#34; == &#34;$SSID&#34; ]]; then sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts exit 0 fi done # not in list, use remote sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts elif [[ &#34;$2&#34; == &#34;vpn-up&#34; ]]; then if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then sed -i -e &#39;/dynremote/ s/^[^#]/#&amp;/&#39; -e &#39;/dynlocal/ s/^#//&#39; /etc/hosts exit 0 fi elif [[ &#34;$2&#34; == &#34;vpn-down&#34; ]]; then if [[ &#34;${CONNECTION_ID}&#34; == &#34;home&#34; ]]; then sed -i -e &#39;/dynlocal/ s/^[^#]/#&amp;/&#39; -e &#39;/dynremote/ s/^#//&#39; /etc/hosts exit 0 fi fi /etc/hosts:">
 
+      
+      
+    
 	
-  </head><body class="ma0 avenir bg-near-white development">
+  </head><body class="ma0 avenir bg-near-white production">
 
     
    
@@ -154,7 +157,7 @@ fi
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># this is a NetworkManager dispatcher script, use this to switch IPs of hosts in /etc/hosts</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># usage:</span>
@@ -216,7 +219,7 @@ fi
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/" >
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://shaofeng66.github.io/" >
     &copy;  shaofeng's pages 2026 
   </a>
     <div><div class="ananke-socials"></div>
