@@ -6,8 +6,15 @@
     <description>Recent content on shaofeng&#39;s pages</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Mar 2026 10:53:18 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2026 22:35:15 +0800</lastBuildDate>
     <atom:link href="https://shaofeng66.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Helm Upgrade和CRD更新的坑</title>
+      <link>https://shaofeng66.github.io/articles/helm-upgrade%E5%92%8Ccrd%E6%9B%B4%E6%96%B0%E7%9A%84%E5%9D%91/</link>
+      <pubDate>Mon, 01 Jun 2026 22:35:15 +0800</pubDate>
+      <guid>https://shaofeng66.github.io/articles/helm-upgrade%E5%92%8Ccrd%E6%9B%B4%E6%96%B0%E7%9A%84%E5%9D%91/</guid>
+      <description>&lt;p&gt;已经两次被坑到了，现象很诡异，所以记录一下。&lt;/p&gt;&#xA;&lt;h1 id=&#34;现象&#34;&gt;现象&lt;/h1&gt;&#xA;&lt;p&gt;helm &amp;ndash;dry-run 出来的 manifest 里面有新增的字段，但是 helm upgrade 成功后的 CR 里面这个字段值是 null。&lt;/p&gt;&#xA;&lt;h1 id=&#34;排查&#34;&gt;排查&lt;/h1&gt;&#xA;&lt;p&gt;首先怀疑 CRD 没更新，于是用 kubectl replace 更新 CRD。&lt;/p&gt;&#xA;&lt;p&gt;之后再用 helm upgrade，之后 CR 里面这个字段还是 null。&lt;/p&gt;&#xA;&lt;p&gt;一度怀疑 helm 更新后的 CR 被 operator 改回了旧版本，其实不是这个原因。&lt;/p&gt;&#xA;&lt;p&gt;kubectl get secret sh.helm.release.v1.vdm3000.v10 -o yaml | yq -r .data.release | base64 -d  | base64 -d | gunzip | jq -r &amp;lsquo;.manifest&amp;rsquo; | yq &amp;lsquo;select(.kind==&amp;ldquo;Seaweed&amp;rdquo;) | .spec.volume.concurrentUploadLimitMB&amp;rsquo;&#xA;256&lt;/p&gt;&#xA;&lt;p&gt;于是真相大白。&lt;/p&gt;&#xA;&lt;h1 id=&#34;rc&#34;&gt;RC&lt;/h1&gt;&#xA;&lt;p&gt;是 helm 计算 3 way merge patch 的时候的问题。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Ubuntu24.04 配置某些域名使用不同的DNS服务器</title>
       <link>https://shaofeng66.github.io/articles/ubuntu24.04-%E9%85%8D%E7%BD%AE%E6%9F%90%E4%BA%9B%E5%9F%9F%E5%90%8D%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84dns%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>

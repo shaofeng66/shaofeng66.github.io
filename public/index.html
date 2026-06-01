@@ -49,8 +49,8 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="shaofeng&#39;s pages">
-  <meta itemprop="datePublished" content="2026-03-31T10:53:18+08:00">
-  <meta itemprop="dateModified" content="2026-03-31T10:53:18+08:00">
+  <meta itemprop="datePublished" content="2026-06-01T22:35:15+08:00">
+  <meta itemprop="dateModified" content="2026-06-01T22:35:15+08:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="shaofeng&#39;s pages">
 
@@ -118,6 +118,40 @@
 
       <section class="w-100 mw8">
         
+        
+          <div class="w-100 mb4 relative">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l dark-gray no-underline">
+    <div class="flex-column flex-row-ns flex">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/articles/helm-upgrade%E5%92%8Ccrd%E6%9B%B4%E6%96%B0%E7%9A%84%E5%9D%91/" class="color-inherit dim link">
+            Helm Upgrade和CRD更新的坑
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <p>已经两次被坑到了，现象很诡异，所以记录一下。</p>
+<h1 id="现象">现象</h1>
+<p>helm &ndash;dry-run 出来的 manifest 里面有新增的字段，但是 helm upgrade 成功后的 CR 里面这个字段值是 null。</p>
+<h1 id="排查">排查</h1>
+<p>首先怀疑 CRD 没更新，于是用 kubectl replace 更新 CRD。</p>
+<p>之后再用 helm upgrade，之后 CR 里面这个字段还是 null。</p>
+<p>一度怀疑 helm 更新后的 CR 被 operator 改回了旧版本，其实不是这个原因。</p>
+<p>kubectl get secret sh.helm.release.v1.vdm3000.v10 -o yaml | yq -r .data.release | base64 -d  | base64 -d | gunzip | jq -r &lsquo;.manifest&rsquo; | yq &lsquo;select(.kind==&ldquo;Seaweed&rdquo;) | .spec.volume.concurrentUploadLimitMB&rsquo;
+256</p>
+<p>于是真相大白。</p>
+<h1 id="rc">RC</h1>
+<p>是 helm 计算 3 way merge patch 的时候的问题。</p>
+        </div>
+        <a href="/articles/helm-upgrade%E5%92%8Ccrd%E6%9B%B4%E6%96%B0%E7%9A%84%E5%9D%91/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
         
           <div class="w-100 mb4 relative">
             
